@@ -1,0 +1,11 @@
+export { LoginPage } from "./LoginPage";
+export { DashboardPage } from "./DashboardPage";
+export { ResidentsPage } from "./ResidentsPage";
+export { RoomsPage } from "./RoomsPage";
+export { EmployeesPage } from "./EmployeesPage";
+export { FeesPage } from "./FeesPage";
+export { ExpensesPage } from "./ExpensesPage";
+export { MessPage } from "./MessPage";
+export { ReportsPage } from "./ReportsPage";
+export { NotificationsPage } from "./NotificationsPage";
+export { SettingsPage } from "./SettingsPage";
