@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Menu, Bell, User, LogOut, Globe, Settings } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 
 interface HeaderProps {
   onToggleSidebar: () => void;
@@ -12,14 +13,27 @@ export const Header: React.FC<HeaderProps> = ({
   isSidebarCollapsed,
 }) => {
   const navigate = useNavigate();
-  const [language, setLanguage] = React.useState<"en" | "ur">("en");
+  const { user, logout } = useAuth();
+  const [language, setLanguage] = useState<"en" | "ur">("en");
 
-  const handleLogout = () => {
-    navigate("/login");
+  const handleLogout = async () => {
+    await logout();
   };
 
   const toggleLanguage = () => {
     setLanguage((prev) => (prev === "en" ? "ur" : "en"));
+  };
+
+  // Extract user display name from email
+  const getUserDisplayName = () => {
+    if (!user?.email) return "User";
+    const emailName = user.email.split("@")[0];
+    return emailName.charAt(0).toUpperCase() + emailName.slice(1);
+  };
+
+  // Get user role
+  const getUserRole = () => {
+    return user?.role || "Administrator";
   };
 
   return (
@@ -110,13 +124,24 @@ export const Header: React.FC<HeaderProps> = ({
                 <User size={18} />
               </div>
               <div className="text-start d-none d-md-block">
-                <div className="small fw-semibold">Admin User</div>
+                <div className="small fw-semibold">{getUserDisplayName()}</div>
                 <div className="text-muted" style={{ fontSize: "11px" }}>
-                  Administrator
+                  {getUserRole()}
                 </div>
               </div>
             </button>
             <ul className="dropdown-menu dropdown-menu-end">
+              <li>
+                <div className="dropdown-header">
+                  <div className="fw-semibold">{user?.email}</div>
+                  <div className="small text-muted">
+                    {user?.emailConfirmed ? "Verified" : "Not Verified"}
+                  </div>
+                </div>
+              </li>
+              <li>
+                <hr className="dropdown-divider" />
+              </li>
               <li>
                 <a className="dropdown-item" href="/settings">
                   <User size={16} className="me-2" />

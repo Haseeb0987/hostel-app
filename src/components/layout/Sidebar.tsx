@@ -12,6 +12,7 @@ import {
   Bell,
   Settings,
   Building2,
+  CreditCard,
 } from "lucide-react";
 
 interface SidebarProps {
@@ -26,6 +27,7 @@ const menuItems = [
   { path: "/fees", icon: Receipt, label: "Fee Management" },
   { path: "/expenses", icon: Wallet, label: "Expenses" },
   { path: "/mess", icon: UtensilsCrossed, label: "Mess" },
+  { path: "/plans", icon: CreditCard, label: "Plans" },
   { path: "/reports", icon: BarChart3, label: "Reports" },
   { path: "/notifications", icon: Bell, label: "Notifications" },
   { path: "/settings", icon: Settings, label: "Settings" },
@@ -59,8 +61,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isCollapsed }) => {
             key={item.path}
             to={item.path}
             className={({ isActive }) =>
-              `nav-link d-flex align-items-center px-3 py-2 mx-2 rounded ${
-                isActive ? "bg-primary text-white" : "text-white-50"
+              `nav-link d-flex align-items-center px-3 py-2 mx-2 rounded ${isActive ? "bg-primary text-white" : "text-white-50"
               }`
             }
             style={{ transition: "all 0.2s" }}

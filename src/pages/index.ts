@@ -6,6 +6,7 @@ export { EmployeesPage } from "./EmployeesPage";
 export { FeesPage } from "./FeesPage";
 export { ExpensesPage } from "./ExpensesPage";
 export { MessPage } from "./MessPage";
+export { PlansPage } from "./PlansPage";
 export { ReportsPage } from "./ReportsPage";
 export { NotificationsPage } from "./NotificationsPage";
 export { SettingsPage } from "./SettingsPage";
